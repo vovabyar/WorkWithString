@@ -1,5 +1,6 @@
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.aggregator.ArgumentAccessException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +28,9 @@ class StringConverterTest {
         expected.add("");
         expected.add("  ");
         Assert.assertEquals(expected, actual);
+
+        assertThrows(ArgumentAccessException.class, () -> {
+            StringConverter.Converter(" ", "abc", 2, 3);
+        });
     }
 }
